@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const userCount = document.getElementById('userCount');
   const orderModal = document.getElementById('orderModal');
   const closeModalButton = document.querySelector('.close');
-  const submitOrderButton = document.getElementById('submitOrder');
   
   // Function to highlight the pricing plan based on the slider value
   function highlightPricingPlan() {
@@ -51,38 +50,4 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add an event listener to the close button to close the order modal
   closeModalButton.addEventListener('click', closeOrderModal);
 
-  // Add an event listener to the submit button to submit the form details
-  submitOrderButton.addEventListener('click', () => {
-    // Close the modal
-    closeOrderModal();
-    
-    // Handle form submission (Call the API or perform other actions)
-    const formData = new FormData(document.getElementById('orderForm'));
-    const data = {};
-
-    // Convert form data to a JSON object
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
-
-    // Make an AJAX POST request to the API endpoint
-    fetch('https://forms.maakeetoo.com/formapi/623', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'AccessCode': '978C5NXN40339IXK3LBRGB6M5', // Access Code
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        // Handle the response here (e.g., show a success message)
-        console.log(responseData);
-      })
-      .catch((error) => {
-        // Handle errors here
-        console.error(error);
-      });
-  });
 });
